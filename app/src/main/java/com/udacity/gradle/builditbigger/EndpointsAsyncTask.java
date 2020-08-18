@@ -17,12 +17,7 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
 
     public static MyApi myApiService = null;
     private Context context;
-    public AsyncResponseHandler responseHandler;
     private Exception mException;
-
-    void setResponseHandler(AsyncResponseHandler responseHandler) {
-        this.responseHandler = responseHandler;
-    }
 
     @Override
     protected String doInBackground(Context... params) {
@@ -56,13 +51,6 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         // Toast.makeText(context, result, Toast.LENGTH_LONG).show();
-        if (responseHandler != null) {
-            if (mException == null) {
-                responseHandler.onSuccess(result);
-            } else {
-                responseHandler.onFailed(mException);
-            }
-        }
         final Intent intent = new Intent(context, JokesActivity.class);
         intent.putExtra("gce_result", result);
         context.startActivity(intent);
