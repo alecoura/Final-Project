@@ -16,7 +16,7 @@ import static org.junit.Assert.assertTrue;
 public class EndpointsAsyncTaskTest {
 
     @Rule
-    private ActivityTestRule<MainActivity> activityActivityTestRule =
+    public ActivityTestRule<MainActivity> activityActivityTestRule =
             new ActivityTestRule<>(MainActivity.class);
 
     @Test
