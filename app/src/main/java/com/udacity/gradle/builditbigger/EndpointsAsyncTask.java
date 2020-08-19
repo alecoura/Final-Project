@@ -18,6 +18,7 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
     public static MyApi myApiService = null;
     private Context context;
     private Exception mException;
+    private static final String GCE_RESULT = "gce_result";
 
     @Override
     protected String doInBackground(Context... params) {
@@ -44,7 +45,7 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
         try {
             return myApiService.getRandomJokeService().execute().getData();
         } catch (IOException e) {
-            return e.getMessage();
+            return "";
         }
     }
 
@@ -52,7 +53,7 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
     protected void onPostExecute(String result) {
         // Toast.makeText(context, result, Toast.LENGTH_LONG).show();
         final Intent intent = new Intent(context, JokesActivity.class);
-        intent.putExtra("gce_result", result);
+        intent.putExtra(GCE_RESULT, result);
         context.startActivity(intent);
     }
 }

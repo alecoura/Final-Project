@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 public class JokesActivityFragment extends Fragment {
 
+    private static final String GCE_RESULT = "gce_result";
+
     // Empty constructor
     public JokesActivityFragment() {
     }
@@ -25,11 +27,13 @@ public class JokesActivityFragment extends Fragment {
         String joke = intent.getStringExtra("jokes");
         jokesTextView.setText(joke);
         */
-        String gceResult = getActivity().getIntent().getStringExtra("gce_result");
-        TextView gceResultTextView = view.findViewById(R.id.tv_jokes);
-        gceResultTextView.setText(gceResult);
+        Intent intent = getActivity().getIntent();
+        if(intent.hasExtra(GCE_RESULT)) {
+            String gceResult = intent.getStringExtra(GCE_RESULT);
+            TextView gceResultTextView = view.findViewById(R.id.tv_jokes);
+            gceResultTextView.setText(gceResult);
+        }
 
         return view;
     }
-
 }
